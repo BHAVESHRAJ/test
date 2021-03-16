@@ -2,7 +2,7 @@ pipeline {
     agent any
     stages {
         stage("Build Notification"){
-        slackSend channel: '#pipeline', message: 'Pipeline Notification', tokenCredentialId: 'slack_id'
+            slackSend channel: '#pipeline', message: 'Pipeline Notification', tokenCredentialId: 'slack_id'
         }
         stage("build") {
             steps {
