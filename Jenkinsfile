@@ -20,7 +20,7 @@ pipeline {
       steps {
         //slackSend channel: '#pipeline', color: '#417a2a', message: 'Pipeline Notification', tokenCredentialId: 'slack_id'
         echo 'The pipeline finish successfully'
-        slackSend (channel: '#pipeline', tokenCredentialId: 'slack_id', color: '#417a2a', message: "\n *Pipeline Deployment*: \n")
+        slackSend (channel: 'pipeline-test', tokenCredentialId: 'slack_id', color: '#417a2a', message: "\n *Pipeline Deployment*: \n")
       }
     }
 
