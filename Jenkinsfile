@@ -1,5 +1,10 @@
 pipeline {
   agent any
+  environment{
+        BASE_JENKINS_URL = 'http://localhost:8080/'
+        BASE_REPO_URL = 'https://github.com/BHAVESHRAJ/test/commit/'
+    }
+
   stages {
     stage("Build") {
       steps {
@@ -31,7 +36,19 @@ pipeline {
            // slackSend (channel: 'pipeline-test', tokenCredentialId: 'slack_id', color:'danger', message: "<@$userIds>Error in build ${env.JOB_NAME}")
        // }
    // }
+    post{
 
+        success{
+            echo 'The pipeline finish successfully'
+            slackSend (channel: 'pipeline-test', tokenCredentialId: 'slack-id', color: '#417a2a', message: "\n *GD Pipeline Deployment*: \n The deployment No. *${BUILD_NUMBER}* was successful based on the changes on the *${GIT_LOCAL_BRANCH}* branch \n\n To see the deployment results please <${BASE_JENKINS_URL}/${GIT_LOCAL_BRANCH}/${BUILD_NUMBER}|*follow this link*> \n ")
+        }
+
+        failure{
+            echo 'Something went wrong'
+            slackSend (channel: 'pipeline-test', tokenCredentialId: 'slack-id', color: '#a8120a', message: "\n *GD Pipeline Deployment*: \n The deployment *No.${BUILD_NUMBER}* has errors, please review the *${GIT_LOCAL_BRANCH}* branch \n\n To see the deployment errors please <${BASE_JENKINS_URL}/${GIT_LOCAL_BRANCH}/${BUILD_NUMBER}|*follow this link*> \n ")
+        }
+    } 
+         
       }
     }
 
