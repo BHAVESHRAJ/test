@@ -20,7 +20,7 @@ pipeline {
       steps {
         //slackSend channel: '#pipeline', color: '#417a2a', message: 'Pipeline Notification', tokenCredentialId: 'slack_id'
         echo 'The pipeline finish successfully'
-        slackSend (channel: 'pipeline-test', tokenCredentialId: 'slack_id', color: '#417a2a', message: "\n *GDPR Pipeline Deployment*: \n", "<@$userIds>Error in build ${env.JOB_NAME}")
+        slackSend (channel: 'pipeline-test', tokenCredentialId: 'slack_id', color: '#417a2a', message: "<@$userIds>Error in build ${env.JOB_NAME}")
 
    // post {
         // Send the build result to slack channel
