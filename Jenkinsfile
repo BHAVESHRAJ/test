@@ -46,7 +46,7 @@ pipeline {
         }
     }
 
-def color_slack_msg() {
+    def color_slack_msg() {
     def COLOR_MAP = [
         'SUCCESS': 'good', 
         'FAILURE': 'danger',
