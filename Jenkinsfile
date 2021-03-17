@@ -9,7 +9,6 @@ pipeline {
     }    
     stage("Build") {
       steps {
-        buid 'mvn'
         echo "building..."
       }
     }
