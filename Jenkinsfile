@@ -2,7 +2,7 @@ pipeline {
   agent any
   environment{
     BASE_JENKINS_URL = 'http://localhost:8080/'
-    BASE_REPO_URL = 'https://github.com/BHAVESHRAJ/commit/'
+    BASE_REPO_URL = 'https://github.com/BHAVESHRAJ/test/commit'
   }  
   stages {
     stage('jenkins-start-notification'){
