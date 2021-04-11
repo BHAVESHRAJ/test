@@ -65,7 +65,7 @@ pipeline {
 
         failure{
             echo 'Something went wrong'
-            slackSend (channel: 'pipeline-test', tokenCredentialId: 'slack_id', color: '#a8120a', message: "\n *April Pipeline Deployment*: \n The deployment *No.${BUILD_NUMBER}* has errors, please review the *${GIT_BRANCH}* branch \n\n To see the deployment errors please <${BASE_JENKINS_URL}/${BUILD_URL}/${env.BUILD_NUMBER}|*follow this link*> \n ")
+            slackSend (channel: 'pipeline-test', tokenCredentialId: 'slack_id', color: '#a8120a', message: "\n *April Pipeline Deployment*: \n The deployment *No.${BUILD_NUMBER}* has errors, please review the *${GIT_BRANCH}* branch \n\n To see the deployment errors please <${BASE_JENKINS_URL}/${env.BUILD_URL}/${BUILD_NUMBER}|*follow this link*> \n ")
         }
     }
  
