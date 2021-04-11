@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment{
-    BASE_JENKINS_URL = 'http://localhost:8080/'
+    BASE_JENKINS_URL = 'http://localhost:8080/job/Pipeline-slack/'
     BASE_REPO_URL = 'https://github.com/BHAVESHRAJ/test/commit'
   }  
   stages {
@@ -22,7 +22,7 @@ pipeline {
                     }
                 }
 
-                slackSend (channel: 'pipeline-test', tokenCredentialId: 'slack_id', color: '#1676c9', message: "\n *April Pipeline Deployment*: \n A deployment started on the *${GIT_BRANCH}* branch  \n\n *Build Number*: \t\t\t\t\t\t *Last Commit*\n ${BUILD_NUMBER}                   \t\t\t\t\t\t <${BASE_REPO_URL}/${GIT_COMMIT}|${TRUNCATED_GIT_COMMIT}> \n *Last Successful Commit* \n <${BASE_REPO_URL}/${GIT_PREVIOUS_SUCCESSFUL_COMMIT}|${TRUNCATED_LAST_SUCCESS_COMMIT}> \n\n To see the status of the deployment please <${env.JOB_NAME}/${env.BUILD_NUMBER}/${env.BUILD_URL}|*follow this link*> \n ")
+                slackSend (channel: 'pipeline-test', tokenCredentialId: 'slack_id', color: '#1676c9', message: "\n *April Pipeline Deployment*: \n A deployment started on the *${GIT_BRANCH}* branch  \n\n *Build Number*: \t\t\t\t\t\t *Last Commit*\n ${BUILD_NUMBER}                   \t\t\t\t\t\t <${BASE_REPO_URL}/${GIT_COMMIT}|${TRUNCATED_GIT_COMMIT}> \n *Last Successful Commit* \n <${BASE_REPO_URL}/${GIT_PREVIOUS_SUCCESSFUL_COMMIT}|${TRUNCATED_LAST_SUCCESS_COMMIT}> \n\n To see the status of the deployment please <${BASE_JENKINS_URL}/${GIT_BRANCH}/${BUILD_NUMBER}|*follow this link*> \n ")
             }
         }
     
@@ -60,12 +60,12 @@ pipeline {
 
         success{
             echo 'The pipeline finish successfully'
-            slackSend (channel: 'pipeline-test', tokenCredentialId: 'slack_id', color: '#417a2a', message: "\n *April Pipeline Deployment*: \n The deployment No. *${BUILD_NUMBER}* was successful based on the changes on the *${GIT_BRANCH}* branch \n\n To see the deployment results please <${env.JOB_NAME}/${env.BUILD_NUMBER}/${env.BUILD_URL}|*follow this link*> \n ")
+            slackSend (channel: 'pipeline-test', tokenCredentialId: 'slack_id', color: '#417a2a', message: "\n *April Pipeline Deployment*: \n The deployment No. *${BUILD_NUMBER}* was successful based on the changes on the *${GIT_BRANCH}* branch \n\n To see the deployment results please <${BASE_JENKINS_URL}/${GIT_BRANCH}/${BUILD_NUMBER}|*follow this link*> \n ")
         }
 
         failure{
             echo 'Something went wrong'
-            slackSend (channel: 'pipeline-test', tokenCredentialId: 'slack_id', color: '#a8120a', message: "\n *April Pipeline Deployment*: \n The deployment *No.${BUILD_NUMBER}* has errors, please review the *${GIT_BRANCH}* branch \n\n To see the deployment errors please <${env.JOB_NAME}/${env.BUILD_NUMBER}/${env.BUILD_URL}|*follow this link*> \n ")
+            slackSend (channel: 'pipeline-test', tokenCredentialId: 'slack_id', color: '#a8120a', message: "\n *April Pipeline Deployment*: \n The deployment *No.${BUILD_NUMBER}* has errors, please review the *${GIT_BRANCH}* branch \n\n To see the deployment errors please <${BASE_JENKINS_URL}/${GIT_BRANCH}/${BUILD_NUMBER}|*follow this link*> \n ")
         }
     }
  
