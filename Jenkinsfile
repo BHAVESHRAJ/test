@@ -60,12 +60,12 @@ pipeline {
 
         success{
             echo 'The pipeline finish successfully'
-            slackSend (channel: 'pipeline-test', tokenCredentialId: 'slack_id', color: '#417a2a', message: "\n *April Pipeline Deployment*: \n The deployment No. *${BUILD_NUMBER}* was successful based on the changes on the *${GIT_BRANCH}* branch \n\n To see the deployment results please <${BASE_JENKINS_URL}/${GIT_BRANCH}/${BUILD_NUMBER}|*follow this link*> \n ")
+            slackSend (channel: 'pipeline-test', tokenCredentialId: 'slack_id', color: '#417a2a', message: "\n *April Pipeline Deployment*: \n The deployment No. *${BUILD_NUMBER}* was successful based on the changes on the *${GIT_BRANCH}* branch \n\n To see the deployment results please <${BASE_JENKINS_URL}/${BUILD_URL}/${BUILD_NUMBER}|*follow this link*> \n ")
         }
 
         failure{
             echo 'Something went wrong'
-            slackSend (channel: 'pipeline-test', tokenCredentialId: 'slack_id', color: '#a8120a', message: "\n *April Pipeline Deployment*: \n The deployment *No.${BUILD_NUMBER}* has errors, please review the *${GIT_BRANCH}* branch \n\n To see the deployment errors please <${BASE_JENKINS_URL}/${GIT_BRANCH}/${BUILD_NUMBER}|*follow this link*> \n ")
+            slackSend (channel: 'pipeline-test', tokenCredentialId: 'slack_id', color: '#a8120a', message: "\n *April Pipeline Deployment*: \n The deployment *No.${BUILD_NUMBER}* has errors, please review the *${GIT_BRANCH}* branch \n\n To see the deployment errors please <${BASE_JENKINS_URL}/${BUILD_URL}/${BUILD_NUMBER}|*follow this link*> \n ")
         }
     }
  
