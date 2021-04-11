@@ -39,12 +39,12 @@ pipeline {
     }
     stage("Test") {
       steps {
-        echo "testing..."
+        echo "testing.."
       }
     }
     stage("Package") {
       steps {
-        echo "packaging..."
+        echo "packaging.."
       }
     }
     //stage("Notification") {
